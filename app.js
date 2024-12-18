@@ -42,7 +42,9 @@ function CheckPattern(id) {
 
   isWinner = checkWinner();
 
-  if (index.length < 1 && !isWinner) {
+  if (index.length == 0 && !isWinner) {
+    msg.innerText = 'Game was a Draw.';
+    msg.style.color = "red";
     msg.style.display = "block";
   }
 }
@@ -54,7 +56,7 @@ function checkWinner() {
     const pos3 = boxes[pattern[2]].innerText;
 
     if (pos1 !== "" && pos2 !== "" && pos3 !== "") {
-      if (pos1 === pos2 && pos2 === pos3) {
+      if (pos1 === pos2 && pos2 === pos3 && pos1 === pos3) {
         msg.innerText = `Congratulations, Winner is ${pos1}`;
         msg.style.color = "green";
         msg.style.display = "block";
@@ -80,7 +82,6 @@ function resetGame() {
 
   // disable msg
   msg.style.display = "none";
-
   // Add the event listener & remove the previous moves
   boxes.forEach((box) => {
     box.innerHTML = "";
